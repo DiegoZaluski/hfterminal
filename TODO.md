@@ -9,12 +9,12 @@ O sistema deve ter um menu interativo com as seguintes funcionalidades:
 
 - **Cadastrar** um novo registro com pelo menos 4 campos (sendo pelo menos 1 string, 1 inteiro e
 1 booleano) ❌
-- **Listar** todos os registros cadastrados, ordenados alfabeticamente
-- **Buscar** registros por nome (busca parcial e case-insensitive)
+- **Listar** todos os registros cadastrados, ordenados alfabeticamente ❌
+- **Buscar** registros por nome (busca parcial e case-insensitive) ❌
 - **Editar** um registro existente (permitindo manter valores atuais ao pressionar Enter)
 - **Remover** um registro com confirmação antes de excluir
 - **Estatísticas** — exibir pelo menos 3 informações calculadas a partir dos dados (ex: total, média,
-contagem por status)
+contagem por status)❌
 
 ### Regras
 

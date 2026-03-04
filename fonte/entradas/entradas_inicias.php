@@ -68,7 +68,7 @@ function llama_cpp_existe()
 
 // $dados = "usuario" , "data", "hora", [bool] llama_cpp
 
-// --- DOWNLOAD DE MODELOS --- 
+// --- (LOC): DOWNLOAD DE MODELOS --- 
 function baixar_modelo(callable $roda_roda) //  callable $verifica_llama  ira receber o  llama_cpp_existe no futuro fiz assim somente para ficar mais flexivel e menor dependente a função 
 { 
   /*

@@ -23,12 +23,14 @@ function download_e_build_llama(callable $llama_cpp_existe) {
       return false; // retorna false para causo eu queira usar em um if de verificação no futuro 
     }
   }
-
+  // algo de errado não esta certo o que é ????? falta do cmake ?? 
   shell_exec("cd llama.cpp 
-  && mkdir -p build && cd build 
-  && cmake .. -DCMAKE_BUILD_TYPE=Release 
-  && cmake --build . --config Release -j$(nproc)"); // comando para navegar nas pasta e buildar o llama.cpp
+  \ mkdir -p build && cd build 
+  \ cmake .. -DCMAKE_BUILD_TYPE=Release 
+  \ cmake --build . --config Release -j$(nproc)"); // comando para navegar nas pasta e buildar o llama.cpp
+
 
 }
+
 
 // $dados = "usuario" , "data", "hora", [bool] "llama_cpp", "modelo_baixado" = [$nome_modelo => false] // array formado ate agora
