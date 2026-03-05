@@ -1,9 +1,12 @@
 <?php 
 require_once "./fonte/util/logger.php";
+require_once "./fonte/util/imprimir_dados.php";
 //  - **Cadastrar** um novo registro com pelo menos 4 campos (sendo pelo menos 1 string, 1 inteiro e
 // 1 booleano)
+function console() {
+ return new Logger("./entrada/entradas_inicias"); 
+}
 
-$console = new Logger("./entrada/entradas_inicias");
 
 // --- (LOC):USUARIO ---
 function usuario_nome() 
@@ -28,6 +31,7 @@ function data_hora()
     apenas adiciona data e hora dentro do array, depende de um array do escopo lexical com o nome de $dodos
   */
   global $dados;
+
   $data =  date("d/m/Y");
   $hora = date("H:i:s");
 
@@ -48,7 +52,7 @@ function llama_cpp_existe()
   */
 
   global $dados;
-  global $console;
+  $console = console();
 
   $shell = explode("\n", shell_exec("ls"));
 
@@ -76,7 +80,7 @@ function baixar_modelo(callable $roda_roda) //  callable $verifica_llama  ira re
   */
   require_once "./fonte/dados/modelos.php"; // array de modelos para sugestão de download e repositorio aonde eles se encontram 
   global $dados;
-  global $console;
+  $console = console();
   
   if (!$dados["llama_cpp"]) {
     $console -> log("não a llama_cpp na raiz do projeto", "ERROR");
@@ -84,7 +88,7 @@ function baixar_modelo(callable $roda_roda) //  callable $verifica_llama  ira re
   } 
   
   echo "--- DOWLOAD DE MODELOS ---\n";
-  var_dump($modelos);
+  imprimir_dados($modelos);
   $escolha_do_modelo = (int)readline("Digite o indice do modelo que deseja baixar: "); // se não for possivel converter para int ele vai definir com padrão o numeor 0 
   
   if (!isset($modelos[$escolha_do_modelo])) {
@@ -99,8 +103,8 @@ function baixar_modelo(callable $roda_roda) //  callable $verifica_llama  ira re
   $ram_caminho = "/dev/shm/"; // para salva o arquivo de status na ram
   $caminho_para_models = "llama.cpp/models"; // iso ser asado para irmos para models dentro de llama.cpp la sera baixado o modelo 
   // $caminho_para_models mover para um arquivo de paths 
-
-  $wget_cmd = "(wget -O \"{$nome_modelo}.gguf\" \"{$url_download}\" > /dev/null 2>&1 && touch \"{$ram_caminho}{$nome_modelo}.success\") &"; // > /dev/null 2>&1 & isso serve para jogar o comando para background podendo assim usar o spiner no terminal de indicação de dowload
+  // removido .gguf 
+  $wget_cmd = "(wget -O \"{$nome_modelo}\" \"{$url_download}\" > /dev/null 2>&1 && touch \"{$ram_caminho}{$nome_modelo}.success\") &"; // > /dev/null 2>&1 & isso serve para jogar o comando para background podendo assim usar o spiner no terminal de indicação de dowload
   /* --- RESUME MENTAL --- 
     Vai pegar o modelo basedo no indice vai pegar a url baseado no nome pego com o indice, 
     vai montar o url para baixar usando wget essa url baixa o modelo joga para um arquivo gguf e depis cria um arquivo de status da operação na ram 
