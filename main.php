@@ -14,6 +14,7 @@ require_once "./fonte/mult_escolha/baixar_sn.php";
 require_once "./fonte/llama_cli/chat.php";
 require_once "./fonte/mult_escolha/REO_escolha.php";
 require_once "./fonte/manipular/calculos.php";
+
 // --------------------- //
 
 // ----- INSTANCIAS -----
@@ -28,7 +29,8 @@ while(true) {
   // COMPORTAMENTO INCIAL // 
   if(!$ligar_chave) {
 
-    usuario_nome(); 
+    if(!usuario_nome())continue; // continua se não retorar true 
+    echo "\r";
     data_hora();
     llama_cpp_existe();
 
@@ -50,6 +52,7 @@ while(true) {
   var_dump($dados_organizado); // exibe dados 
 
   $CE = chat_ou_editar(); 
+  echo "\r";
   if ($CE === 1) {// LLAMA CLI
     chat();
   } 
@@ -68,7 +71,14 @@ while(true) {
   else echo "Erro desconhecido";
 
   $sair = strtolower(trim(readline("[ctrl+c]: PARA SAIR ou apente a tecla \"S\": "))) === "s"? true : false;
-  if ($sair) break; // para o loop
+  echo "\r"; 
+  if ($sair) {
+
+    $ligar_chave--; // desliga o motor fechando sessão 
+
+    break;
+
+  } // para o loop
 
 }
 

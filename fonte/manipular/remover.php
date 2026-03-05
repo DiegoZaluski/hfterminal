@@ -61,7 +61,7 @@ function  expecifico() {
 
 // depende das variaveis do local em que foi chamado
 
-function remover(string | null $nome) 
+function remover(string | null $nome = null) 
 {
   /* usa hash map para tomada de desição 
   DEPENDENCIA:

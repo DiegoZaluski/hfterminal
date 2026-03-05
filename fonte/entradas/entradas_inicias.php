@@ -20,7 +20,10 @@ function usuario_nome()
   $nome = trim(readline("Digite seu nome: "));
   $comprimento_nome = strlen($nome);
   
-  if ($nome && !is_numeric($nome) && $comprimento_nome > 0 ) $dados["usuario"] = $nome; // adiciona o nome digitado pelo usuario ao array de dados   
+  if ($nome && !is_numeric($nome) && $comprimento_nome > 0 ) {
+    $dados["usuario"] = $nome;
+    return true;
+  } // adiciona o nome digitado pelo usuario ao array de dados   
 
 }
 // $dados = "usuario" , ... 
