@@ -40,11 +40,18 @@ Você pode criar um sistema de gerenciamento para qualquer tema. Alguns exemplos
 
 
 
-# Criar pasta de build e entrar nela
 cd llama.cpp
+
+# Criar pasta de build e entrar nela
 mkdir -p build
 cd build
+
 # Configurar o build com CMake para Release
 cmake .. -DCMAKE_BUILD_TYPE=Release
+
 # Compilar usando todos os núcleos da CPU
-cmake --build . --
+cmake --build . --config Release -j$(nproc)
+
+
+sudo apt update
+sudo apt install cmake
